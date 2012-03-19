@@ -118,7 +118,15 @@
 
           if (data !== false) {
             $(options.insertAfter).after("<div id=\"endless_scroll_data\">" + data + "</div>");
-            $("#endless_scroll_data").hide().fadeIn(250, function() {$(this).removeAttr("id");});
+            $("#endless_scroll_data").hide().fadeIn(250, function() {
+              var $this    = $(this),
+                  children = $(this).contents();
+                  
+              // Remove the container used for appending content.
+              $(this)
+                .replaceWith(children)
+                .removeAttr("id");
+            });
 
             options.callback.apply(scrollTarget, [fireSequence]);
 
