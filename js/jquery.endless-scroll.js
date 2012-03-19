@@ -120,10 +120,10 @@
             $(options.insertAfter).after("<div id=\"endless_scroll_data\">" + data + "</div>");
             $("#endless_scroll_data").hide().fadeIn(250, function() {
               var $this    = $(this),
-                  children = $(this).contents();
+                  children = $this.contents();
                   
               // Remove the container used for appending content.
-              $(this)
+              $this
                 .replaceWith(children)
                 .removeAttr("id");
             });
